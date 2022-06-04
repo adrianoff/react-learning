@@ -1,0 +1,18 @@
+services:
+  react_learning:
+    container_name: react_learning
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ../src:/var/www/react_learning
+    ports:
+      - "1029:1029"
+    privileged: true
+    labels:
+      org.label-schema.group: "react_learning"
+    working_dir: "/var/www/react_learning"
+    command: sh -c "npm install && npm run build && http-server ./dist -p 1029"
+
+version: '3'
+volumes: {}
