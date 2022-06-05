@@ -12,7 +12,7 @@ services:
     labels:
       org.label-schema.group: "react_learning"
     working_dir: "/var/www/react_learning"
-    command: sh -c "npm start"
+    command: sh -c "npm install && npm start"
 
 version: '3'
 volumes: {}
