@@ -3,7 +3,8 @@ import React from "react";
 function App() {
   return (
     <div className="App">
-      Hello World!
+      <button>Increment</button>
+      <button>Decrement</button>
     </div>
   );
 }
