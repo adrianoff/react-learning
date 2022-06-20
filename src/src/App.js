@@ -9,40 +9,18 @@ import MyButton from "./Components/UI/button/MyButton";
 
 function App() {
     const [posts, setPosts] = useState([
-        {id: 1, title: 'Post title', body: 'Post body'},
-        {id: 2, title: 'Post title', body: 'Post body'},
-        {id: 3, title: 'Post title', body: 'Post body'}
+        {id: 2, title: 'Post title', content: 'Post body'},
+        {id: 1, title: 'Post title', content: 'Post body'},
+        {id: 3, title: 'Post title', content: 'Post body'}
     ])
-    const [title, setTitle] = useState('')
-    const [content, setContent] = useState('')
 
-    const addNewPost = (e) => {
-        e.preventDefault()
-        const newPost = {
-            id: Date.now(),
-            title,
-            content
-        }
+    const createPost = (newPost) => {
         setPosts([...posts, newPost])
-        setTitle('')
-        setContent('')
     }
 
     return (
         <div className="App">
-            {/*<Form />*/}
-            <form>
-                <MyInput
-                    onChange={e => setTitle(e.target.value)}
-                    value={title} type="text" placeholder="Title"
-                />
-                <MyTextArea
-                    onChange={e => setContent(e.target.value)}
-                    value={content}
-                    placeholder="Content"
-                />
-                <MyButton onClick={addNewPost}>Save</MyButton>
-            </form>
+            <Form create={createPost} />
             <PostList posts={posts} title="Posts List" />
 
             {/*<Counter/>*/}

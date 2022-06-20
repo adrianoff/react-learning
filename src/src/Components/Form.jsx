@@ -4,38 +4,32 @@ import MyInput from "./UI/input/MyInput";
 import MyTextArea from "./UI/textarea/MyTextArea";
 import App from "../App";
 
-const Form = () => {
+const Form = ({create}) => {
 
-    const [title, setTitle] = useState('')
-    const [content, setContent] = useState('')
+    const [post, setPost] = useState({title: '', content: ''})
 
     const addNewPost = (e) => {
         e.preventDefault()
         const newPost = {
-            id: Date.now(),
-            title,
-            content
+            ...post, id: Date.now()
         }
-
-        console.log(title)
-        console.log(content)
+        create(newPost)
+        setPost({title: '', content: ''})
     }
 
     return (
-        <div>
-            <form>
-                <MyInput
-                    onChange={e => setTitle(e.target.value)}
-                    value={title} type="text" placeholder="Title"
-                />
-                <MyTextArea
-                    onChange={e => setContent(e.target.value)}
-                    value={content}
-                    placeholder="Content"
-                />
-                <MyButton onClick={addNewPost}>Save</MyButton>
-            </form>
-        </div>
+        <form>
+            <MyInput
+                onChange={e => setPost({...post, title: e.target.value})}
+                value={post.title} type="text" placeholder="Title"
+            />
+            <MyTextArea
+                onChange={e => setPost({...post, content: e.target.value})}
+                value={post.content}
+                placeholder="Content"
+            />
+            <MyButton onClick={addNewPost}>Save</MyButton>
+        </form>
     );
 };
 
