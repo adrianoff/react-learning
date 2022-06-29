@@ -1,11 +1,8 @@
 import React, {useState} from "react";
-import Counter from "./Components/Counter";
 import './Styles/App.css'
 import PostList from "./Components/PostList";
 import Form from "./Components/Form";
-import MyInput from "./Components/UI/input/MyInput";
-import MyTextArea from "./Components/UI/textarea/MyTextArea";
-import MyButton from "./Components/UI/button/MyButton";
+import MySelect from "./Components/UI/select/MySelect";
 
 function App() {
     const [posts, setPosts] = useState([
@@ -18,12 +15,28 @@ function App() {
         setPosts([...posts, newPost])
     }
 
+    const removePost = (post) => {
+        setPosts(posts.filter(p => p.id !== post.id))
+    }
+
     return (
         <div className="App">
-            <Form create={createPost} />
-            <PostList posts={posts} title="Posts List" />
+            <Form create={createPost}/>
+            <h1 style={{margin: '15px 0'}}></h1>
+            <div>
+                <MySelect
+                    options={[
+                        {'name': 'By Title', 'value': 'title'},
+                        {'name': 'By Content', 'value': 'content'},
+                    ]}
+                />
+            </div>
+            {posts.length !== 0
+                ? <PostList remove={removePost} posts={posts} title="Posts List"/>
+                : <h1 style={{textAlign: "center"}}>No posts!</h1>
+            }
 
-            {/*<Counter/>*/}
+
         </div>
     );
 }
