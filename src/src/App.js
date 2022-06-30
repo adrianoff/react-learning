@@ -43,13 +43,6 @@ function App() {
         setSelectedSort(sort)
     }
 
-    const filterPosts = (event) => {
-        const text = event.target.value
-        const filteredPosts = posts.filter(post => post.content.includes(text))
-
-        setPosts(filteredPosts)
-    }
-
     return (
         <div className="App">
             <h1 style={{margin: '15px 0', textAlign: 'center'}}>Portfolion</h1>
